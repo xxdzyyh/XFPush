@@ -1,0 +1,1 @@
+../../../XFPlugin/Plugin/XFPluginManager.h
