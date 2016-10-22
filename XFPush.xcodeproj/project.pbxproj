@@ -15,9 +15,9 @@
 		EC0FACC81DB5CC90009A5DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0FACC71DB5CC90009A5DCE /* Assets.xcassets */; };
 		EC0FACCB1DB5CC90009A5DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC0FACC91DB5CC90009A5DCE /* LaunchScreen.storyboard */; };
 		EC3657271DBAF7AF00D8D3C7 /* XFPushPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3657261DBAF7AF00D8D3C7 /* XFPushPlugin.m */; };
+		EC36572A1DBAFB4100D8D3C7 /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3657281DBAFB4100D8D3C7 /* libUMessage_Sdk_1.3.0.a */; };
 		ECA4B39E1DB8745100DD7254 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA4B39D1DB8745100DD7254 /* libz.tbd */; };
 		ECA4B3A01DB8745F00DD7254 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA4B39F1DB8745F00DD7254 /* UserNotifications.framework */; };
-		ECA967021DB8BB380054175A /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA967001DB8BB380054175A /* libUMessage_Sdk_1.3.0.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,11 +36,11 @@
 		EC0FACCC1DB5CC90009A5DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC3657251DBAF7AF00D8D3C7 /* XFPushPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFPushPlugin.h; sourceTree = "<group>"; };
 		EC3657261DBAF7AF00D8D3C7 /* XFPushPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFPushPlugin.m; sourceTree = "<group>"; };
+		EC3657281DBAFB4100D8D3C7 /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUMessage_Sdk_1.3.0.a; path = Push/UMessage_Sdk_1.3.0/libUMessage_Sdk_1.3.0.a; sourceTree = SOURCE_ROOT; };
+		EC3657291DBAFB4100D8D3C7 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UMessage.h; path = Push/UMessage_Sdk_1.3.0/UMessage.h; sourceTree = SOURCE_ROOT; };
 		ECA4B39D1DB8745100DD7254 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		ECA4B39F1DB8745F00DD7254 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		ECA966FC1DB8BA880054175A /* XFPush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XFPush.entitlements; sourceTree = "<group>"; };
-		ECA967001DB8BB380054175A /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
-		ECA967011DB8BB380054175A /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 				ECA4B3A01DB8745F00DD7254 /* UserNotifications.framework in Frameworks */,
 				ECA4B39E1DB8745100DD7254 /* libz.tbd in Frameworks */,
 				0AC669F94AAF625544C74245 /* libPods-XFPush.a in Frameworks */,
-				ECA967021DB8BB380054175A /* libUMessage_Sdk_1.3.0.a in Frameworks */,
+				EC36572A1DBAFB4100D8D3C7 /* libUMessage_Sdk_1.3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,8 +125,8 @@
 		ECA966FF1DB8BB380054175A /* UMessage_Sdk_1.3.0 */ = {
 			isa = PBXGroup;
 			children = (
-				ECA967001DB8BB380054175A /* libUMessage_Sdk_1.3.0.a */,
-				ECA967011DB8BB380054175A /* UMessage.h */,
+				EC3657281DBAFB4100D8D3C7 /* libUMessage_Sdk_1.3.0.a */,
+				EC3657291DBAFB4100D8D3C7 /* UMessage.h */,
 			);
 			name = UMessage_Sdk_1.3.0;
 			path = ../XFPush/UMessage_Sdk_1.3.0;
@@ -398,6 +398,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/XFPush/UMessage_Sdk_1.3.0",
+					"$(PROJECT_DIR)/Push/UMessage_Sdk_1.3.0",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.chuangtoubang.ctb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -416,6 +417,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/XFPush/UMessage_Sdk_1.3.0",
+					"$(PROJECT_DIR)/Push/UMessage_Sdk_1.3.0",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.chuangtoubang.ctb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
