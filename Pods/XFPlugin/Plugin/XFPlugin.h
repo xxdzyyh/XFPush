@@ -15,16 +15,15 @@
 // 插件名称，默认为类名
 @property (copy  , nonatomic) NSString *name;
 
-
 /**
  一般插件是基于第三方的，需要appKey,appSecret
  */
 @property (copy  , nonatomic) NSString *appKey;
 @property (copy  , nonatomic) NSString *appSecret;
 
-- (instancetype)initWithAppkey:(NSString *)appkey;
+- (instancetype)initWithAppKey:(NSString *)appKey;
 
-- (instancetype)initWithAppkey:(NSString *)appkey
+- (instancetype)initWithAppKey:(NSString *)appKey
                      appSecret:(NSString *)appSecret;
 
 @end

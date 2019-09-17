@@ -14,17 +14,17 @@
 
 #pragma mark - life cycle
 
-- (instancetype)initWithAppkey:(NSString *)appkey appSecret:(NSString *)appSecret {
+- (instancetype)initWithAppKey:(NSString *)appKey appSecret:(NSString *)appSecret {
     self = [super init];
     if (self) {
-        _appKey = appkey;
+        _appKey = appKey;
         _appSecret = appSecret;
     }
     return self;
 }
 
-- (instancetype)initWithAppkey:(NSString *)appkey {
-    self = [self initWithAppkey:appkey appSecret:nil];
+- (instancetype)initWithAppKey:(NSString *)appkey {
+    self = [self initWithAppKey:appkey appSecret:nil];
     
     return self;
 }

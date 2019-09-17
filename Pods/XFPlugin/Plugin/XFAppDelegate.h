@@ -11,10 +11,20 @@
 #import "XFPlugin.h"
 #import "XFPluginManager.h"
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+
+#import <UserNotifications/UserNotifications.h>
+
+@interface XFAppDelegate : UIResponder <UIApplicationDelegate,UNUserNotificationCenterDelegate>
+
+#else
+
 @interface XFAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+#endif
 
+
+@property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) XFPluginManager *pluginManager;
 
 @end

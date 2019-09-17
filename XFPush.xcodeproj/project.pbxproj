@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AC669F94AAF625544C74245 /* libPods-XFPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C741A1AEF3F0E3DB32D40E87 /* libPods-XFPush.a */; };
+		CC8A4A903ABDA7FA035B2D0E /* libPods-XFPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6E4F4ADF7A2FF27704508E /* libPods-XFPush.a */; };
 		EC0FACBD1DB5CC90009A5DCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0FACBC1DB5CC90009A5DCE /* main.m */; };
 		EC0FACC01DB5CC90009A5DCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0FACBF1DB5CC90009A5DCE /* AppDelegate.m */; };
 		EC0FACC31DB5CC90009A5DCE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0FACC21DB5CC90009A5DCE /* ViewController.m */; };
@@ -15,15 +15,14 @@
 		EC0FACC81DB5CC90009A5DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0FACC71DB5CC90009A5DCE /* Assets.xcassets */; };
 		EC0FACCB1DB5CC90009A5DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC0FACC91DB5CC90009A5DCE /* LaunchScreen.storyboard */; };
 		EC3657271DBAF7AF00D8D3C7 /* XFPushPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3657261DBAF7AF00D8D3C7 /* XFPushPlugin.m */; };
-		EC36572A1DBAFB4100D8D3C7 /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3657281DBAFB4100D8D3C7 /* libUMessage_Sdk_1.3.0.a */; };
 		ECA4B39E1DB8745100DD7254 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA4B39D1DB8745100DD7254 /* libz.tbd */; };
 		ECA4B3A01DB8745F00DD7254 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA4B39F1DB8745F00DD7254 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1617F304A12E7A0EEE4DFD2F /* Pods-XFPush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XFPush.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XFPush/Pods-XFPush.debug.xcconfig"; sourceTree = "<group>"; };
-		C741A1AEF3F0E3DB32D40E87 /* libPods-XFPush.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XFPush.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF946428A3D6EFC46A834038 /* Pods-XFPush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XFPush.release.xcconfig"; path = "Pods/Target Support Files/Pods-XFPush/Pods-XFPush.release.xcconfig"; sourceTree = "<group>"; };
+		44F65E49A2BAE0F9D13690B2 /* Pods-XFPush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XFPush.release.xcconfig"; path = "Target Support Files/Pods-XFPush/Pods-XFPush.release.xcconfig"; sourceTree = "<group>"; };
+		9C6E4F4ADF7A2FF27704508E /* libPods-XFPush.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XFPush.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91A6B9FE122E2C392E1A91D /* Pods-XFPush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XFPush.debug.xcconfig"; path = "Target Support Files/Pods-XFPush/Pods-XFPush.debug.xcconfig"; sourceTree = "<group>"; };
 		EC0FACB81DB5CC90009A5DCE /* XFPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XFPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC0FACBC1DB5CC90009A5DCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EC0FACBE1DB5CC90009A5DCE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -36,8 +35,6 @@
 		EC0FACCC1DB5CC90009A5DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC3657251DBAF7AF00D8D3C7 /* XFPushPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFPushPlugin.h; sourceTree = "<group>"; };
 		EC3657261DBAF7AF00D8D3C7 /* XFPushPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFPushPlugin.m; sourceTree = "<group>"; };
-		EC3657281DBAFB4100D8D3C7 /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libUMessage_Sdk_1.3.0.a; path = Push/UMessage_Sdk_1.3.0/libUMessage_Sdk_1.3.0.a; sourceTree = SOURCE_ROOT; };
-		EC3657291DBAFB4100D8D3C7 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UMessage.h; path = Push/UMessage_Sdk_1.3.0/UMessage.h; sourceTree = SOURCE_ROOT; };
 		ECA4B39D1DB8745100DD7254 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		ECA4B39F1DB8745F00DD7254 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		ECA966FC1DB8BA880054175A /* XFPush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XFPush.entitlements; sourceTree = "<group>"; };
@@ -50,20 +47,28 @@
 			files = (
 				ECA4B3A01DB8745F00DD7254 /* UserNotifications.framework in Frameworks */,
 				ECA4B39E1DB8745100DD7254 /* libz.tbd in Frameworks */,
-				0AC669F94AAF625544C74245 /* libPods-XFPush.a in Frameworks */,
-				EC36572A1DBAFB4100D8D3C7 /* libUMessage_Sdk_1.3.0.a in Frameworks */,
+				CC8A4A903ABDA7FA035B2D0E /* libPods-XFPush.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B53B6E9D35BBCFD50E199B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C91A6B9FE122E2C392E1A91D /* Pods-XFPush.debug.xcconfig */,
+				44F65E49A2BAE0F9D13690B2 /* Pods-XFPush.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8C0C5A59D099BA0CE9096A19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ECA4B39F1DB8745F00DD7254 /* UserNotifications.framework */,
 				ECA4B39D1DB8745100DD7254 /* libz.tbd */,
-				C741A1AEF3F0E3DB32D40E87 /* libPods-XFPush.a */,
+				9C6E4F4ADF7A2FF27704508E /* libPods-XFPush.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -74,8 +79,8 @@
 				EC3657241DBAF77E00D8D3C7 /* Push */,
 				EC0FACBA1DB5CC90009A5DCE /* XFPush */,
 				EC0FACB91DB5CC90009A5DCE /* Products */,
-				EEF0FDC2D9CA0FD5A1C49B16 /* Pods */,
 				8C0C5A59D099BA0CE9096A19 /* Frameworks */,
+				1B53B6E9D35BBCFD50E199B5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,30 +120,10 @@
 		EC3657241DBAF77E00D8D3C7 /* Push */ = {
 			isa = PBXGroup;
 			children = (
-				ECA966FF1DB8BB380054175A /* UMessage_Sdk_1.3.0 */,
 				EC3657251DBAF7AF00D8D3C7 /* XFPushPlugin.h */,
 				EC3657261DBAF7AF00D8D3C7 /* XFPushPlugin.m */,
 			);
 			path = Push;
-			sourceTree = "<group>";
-		};
-		ECA966FF1DB8BB380054175A /* UMessage_Sdk_1.3.0 */ = {
-			isa = PBXGroup;
-			children = (
-				EC3657281DBAFB4100D8D3C7 /* libUMessage_Sdk_1.3.0.a */,
-				EC3657291DBAFB4100D8D3C7 /* UMessage.h */,
-			);
-			name = UMessage_Sdk_1.3.0;
-			path = ../XFPush/UMessage_Sdk_1.3.0;
-			sourceTree = "<group>";
-		};
-		EEF0FDC2D9CA0FD5A1C49B16 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1617F304A12E7A0EEE4DFD2F /* Pods-XFPush.debug.xcconfig */,
-				CF946428A3D6EFC46A834038 /* Pods-XFPush.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,12 +133,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC0FACCF1DB5CC90009A5DCE /* Build configuration list for PBXNativeTarget "XFPush" */;
 			buildPhases = (
-				3388AC4173F2EA883BB55A45 /* Check Pods Manifest.lock */,
+				62812466F63F527B9817B317 /* [CP] Check Pods Manifest.lock */,
 				EC0FACB41DB5CC90009A5DCE /* Sources */,
 				EC0FACB51DB5CC90009A5DCE /* Frameworks */,
 				EC0FACB61DB5CC90009A5DCE /* Resources */,
-				7F71AE407290210CD1908A5F /* Embed Pods Frameworks */,
-				ADBA9B0362D587589743E3A5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,9 +158,12 @@
 				TargetAttributes = {
 					EC0FACB71DB5CC90009A5DCE = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = B7396W2E4G;
+						DevelopmentTeam = Y558CYWR2M;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -190,6 +176,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -217,49 +204,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3388AC4173F2EA883BB55A45 /* Check Pods Manifest.lock */ = {
+		62812466F63F527B9817B317 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XFPush-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		7F71AE407290210CD1908A5F /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XFPush/Pods-XFPush-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ADBA9B0362D587589743E3A5 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XFPush/Pods-XFPush-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -388,11 +352,11 @@
 		};
 		EC0FACD01DB5CC90009A5DCE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1617F304A12E7A0EEE4DFD2F /* Pods-XFPush.debug.xcconfig */;
+			baseConfigurationReference = C91A6B9FE122E2C392E1A91D /* Pods-XFPush.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = XFPush/XFPush.entitlements;
-				DEVELOPMENT_TEAM = B7396W2E4G;
+				DEVELOPMENT_TEAM = Y558CYWR2M;
 				INFOPLIST_FILE = XFPush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -400,18 +364,18 @@
 					"$(PROJECT_DIR)/XFPush/UMessage_Sdk_1.3.0",
 					"$(PROJECT_DIR)/Push/UMessage_Sdk_1.3.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chuangtoubang.ctb;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiuliang.youhui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		EC0FACD11DB5CC90009A5DCE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF946428A3D6EFC46A834038 /* Pods-XFPush.release.xcconfig */;
+			baseConfigurationReference = 44F65E49A2BAE0F9D13690B2 /* Pods-XFPush.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = XFPush/XFPush.entitlements;
-				DEVELOPMENT_TEAM = B7396W2E4G;
+				DEVELOPMENT_TEAM = Y558CYWR2M;
 				INFOPLIST_FILE = XFPush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -419,7 +383,7 @@
 					"$(PROJECT_DIR)/XFPush/UMessage_Sdk_1.3.0",
 					"$(PROJECT_DIR)/Push/UMessage_Sdk_1.3.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chuangtoubang.ctb;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiuliang.youhui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -33,6 +33,6 @@
  */
 - (XFPlugin *)pluginWithName:(NSString *)name;
 
-+ (XFPluginManager *)shareInstance;
++ (XFPluginManager *)defaultManager;
 
 @end

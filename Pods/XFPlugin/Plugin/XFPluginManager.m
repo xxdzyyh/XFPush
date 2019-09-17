@@ -18,18 +18,15 @@ static XFPluginManager * _share = nil;
 
 @implementation XFPluginManager
 
-+ (XFPluginManager *)shareInstance {
-    
++ (XFPluginManager *)defaultManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _share = [XFPluginManager new];
     });
-    
     return _share;
 }
 
 - (void)addPlugin:(XFPlugin *)plugin withName:(NSString *)name {
-    
     if (_plugins == nil) {
         _plugins = [NSMutableDictionary dictionary];
     }
@@ -39,19 +36,14 @@ static XFPluginManager * _share = nil;
     }
     
     NSAssert(plugin != nil, @"为什么要注册一个空的plugin");
-    
     [_plugins setObject:plugin forKey:name];
 }
 
 - (XFPlugin *)pluginWithName:(NSString *)name {
-    
-    id obj = [_plugins objectForKey:name];
-    
-    return obj;
+    return [_plugins objectForKey:name];
 }
 
 - (NSArray *)getAllPlugins {
-    
     return _plugins.allValues;
 }
 

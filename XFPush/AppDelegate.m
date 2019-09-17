@@ -9,25 +9,17 @@
 #import "AppDelegate.h"
 #import "XFPushPlugin.h"
 
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        XFPushPlugin *plugin = [XFPushPlugin pushPluginWithAppkey:PushKey];
-        
+        XFPushPlugin *plugin = [XFPushPlugin pushPluginWithAppID:@"2200342513" appKey:@"I351VD31NEIH"];
+        plugin.enableDebug = YES;
+        plugin.shouldShowOpenAlert = YES;
         [self.pluginManager addPlugin:plugin withName:plugin.name];
     }
     return self;
-}
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 @end

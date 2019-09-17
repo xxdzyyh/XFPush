@@ -1,10 +1,25 @@
 PODS:
-  - XFPlugin (0.0.1)
+  - FLEX (2.1.1)
+  - QQ_XGPush (3.3.7)
+  - XFPlugin (0.0.2)
 
 DEPENDENCIES:
-  - XFPlugin
+  - FLEX
+  - QQ_XGPush
+  - XFPlugin (= 0.0.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FLEX
+    - QQ_XGPush
+  https://github.com/xxdzyyh/XFRepo.git:
+    - XFPlugin
 
 SPEC CHECKSUMS:
-  XFPlugin: fc0e304e3c5de06327475b51482d8ac63985f2e9
+  FLEX: 27b768fcae23a313a1eb115076d429180ca9b472
+  QQ_XGPush: b3b7065cd0b11490974e3b33a24bf6803e7f9392
+  XFPlugin: 5321b1b225aaae75146e10ee77092011e4fb4df5
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 2cef8c656af6b896aaa0cd8e2b1dfd07211d3f3e
+
+COCOAPODS: 1.7.1

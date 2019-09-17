@@ -7,102 +7,121 @@
 //
 
 #import "XFPushPlugin.h"
-#import "UMessage.h"
+#import <QQ_XGPush/XGPush.h>
+
+@interface XFPushPlugin () <XGPushDelegate>
+
+@end
 
 @implementation XFPushPlugin
 
-+ (XFPushPlugin *)pushPluginWithAppkey:(NSString *)appkey {
-    XFPushPlugin *p = [[XFPushPlugin alloc] initWithAppkey:appkey];
-    
-    return p;
++ (XFPushPlugin *)pushPluginWithAppID:(NSString *)appID appKey:(NSString *)appKey {
+    return [[XFPushPlugin alloc] initWithAppID:appID appKey:appKey];
+}
+
+- (instancetype)initWithAppID:(NSString *)appID appKey:(NSString *)appKey {
+    return [super initWithAppKey:appID appSecret:appKey];
 }
 
 #pragma mark - UIApplicaionDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    if (self.shouldShowOpenAlert) {
+        [[XGPush defaultManager] deviceNotificationIsAllowed:^(BOOL isAllowed) {
+            if (isAllowed == NO) {
+                NSLog(@"设备不允许推送");
+            } else {
+                NSLog(@"设备允许推送");
+            }
+        }];
+    }
     
-    //初始化方法,也可以使用(void)startWithAppkey:(NSString *)appKey launchOptions:(NSDictionary * )launchOptions httpsenable:(BOOL)value;这个方法，方便设置https请求
-    [UMessage startWithAppkey:self.appKey launchOptions:launchOptions];
-    
-    //注册通知，如果要使用category的自定义策略，可以参考demo中的代码。
-    [UMessage registerForRemoteNotifications];
-    
-    //iOS10必须加下面这段代码。
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    center.delegate=self;
-    UNAuthorizationOptions types10=UNAuthorizationOptionBadge|  UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
-    [center requestAuthorizationWithOptions:types10     completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) {
-            //点击允许
-            //这里可以添加一些自己的逻辑
-        } else {
-            //点击不允许
-            //这里可以添加一些自己的逻辑
-        }
-    }];
-    
-    //打开日志，方便调试
-    [UMessage setLogEnabled:YES];
+    [[XGPush defaultManager] startXGWithAppID:(int32_t)self.appKey.longLongValue appKey:self.appSecret delegate:self];
     
     return YES;
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // 1.2.7版本开始不需要用户再手动注册devicetoken，SDK会自动注册
-//    [UMessage registerDeviceToken:deviceToken];
+/**
+ 收到推送的回调
+ @param application  UIApplication 实例
+ @param userInfo 推送时指定的参数
+ @param completionHandler 完成回调
+ */
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [[XGPush defaultManager] reportXGNotificationInfo:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+// iOS 10 新增回调 API
+// App 用户点击通知
+// App 用户选择通知中的行为
+// App 用户在通知中心清除消息
+// 无论本地推送还是远程推送都会走这个回调
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >=     __IPHONE_10_0
+- (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center 
+      didReceiveNotificationResponse:(UNNotificationResponse *)response 
+               withCompletionHandler:(void (^)(void))completionHandler {
+    [[XGPush defaultManager] reportXGNotificationResponse:response];
+    completionHandler();
 }
 
+// App 在前台弹通知需要调用这个接口
+- (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center
+             willPresentNotification:(UNNotification *)notification 
+               withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    [[XGPush defaultManager] reportXGNotificationInfo:notification.request.content.userInfo];
+    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
+}
+#endif
 
-//iOS10以下使用这个方法接收通知
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    //关闭友盟自带的弹出框
-    [UMessage setAutoAlert:NO];
-    [UMessage didReceiveRemoteNotification:userInfo];
+/**
+ @brief 监控信鸽推送服务地启动情况
+ 
+ @param isSuccess 信鸽推送是否启动成功
+ @param error 信鸽推送启动错误的信息
+ */
+- (void)xgPushDidFinishStart:(BOOL)isSuccess error:(nullable NSError *)error {
+    if (self.enableDebug) {
+        NSLog(@"信鸽推送启动%@",isSuccess?@"成功":@"失败");
+        if (error) {
+            NSLog(@"%@",error);
+        }
+    }
+}
+
+/**
+ @brief 向信鸽服务器注册设备token的回调
+ 
+ @param deviceToken 当前设备的token
+ @param error 错误信息
+ @note 当前的token已经注册过之后，将不会再调用此方法
+ */
+- (void)xgPushDidRegisteredDeviceToken:(nullable NSString *)deviceToken error:(nullable NSError *)error {
+    if (self.enableDebug) {
+        NSLog(@"xgPushDidRegisteredDeviceToken：%@",deviceToken);
+        if (error) {
+            NSLog(@"%@",error);
+        }
+    }
+}
+
+#pragma mark - Public
+
+- (void)setEnableDebug:(BOOL)enableDebug {
+    self.enableDebug = enableDebug;
     
-    //    self.userInfo = userInfo;
-    //    //定制自定的的弹出框
-    //    if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
-    //    {
-    //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"标题"
-    //                                                            message:@"Test On ApplicationStateActive"
-    //                                                           delegate:self
-    //                                                  cancelButtonTitle:@"确定"
-    //                                                  otherButtonTitles:nil];
-    //
-    //        [alertView show];
-    //
-    //    }
+    [[XGPush defaultManager] setEnableDebug:enableDebug];
 }
 
-//iOS10新增：处理前台收到通知的代理方法
--(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
-    NSDictionary * userInfo = notification.request.content.userInfo;
-    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        //应用处于前台时的远程推送接受
-        //关闭友盟自带的弹出框
-        [UMessage setAutoAlert:NO];
-        //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
-        
-    }else{
-        //应用处于前台时的本地推送接受
-    }
-    //当应用处于前台时提示设置，需要哪个可以设置哪一个
-    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
-}
 
-//iOS10新增：处理后台点击通知的代理方法
--(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
-    NSDictionary * userInfo = response.notification.request.content.userInfo;
-    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        //应用处于后台时的远程推送接受
-        //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
-        
-    }else{
-        //应用处于后台时的本地推送接受
-    }
+/**
+ @brief 查询设备通知权限是否被用户允许
+ 
+ @param handler 查询结果的返回方法
+ @note iOS 10 or later 回调是异步地执行
+ */
+- (void)deviceNotificationIsAllowed:(nonnull void (^)(BOOL isAllowed))handler {
+    [[XGPush defaultManager] deviceNotificationIsAllowed:handler];
 }
 
 @end

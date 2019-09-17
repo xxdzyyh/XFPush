@@ -5,8 +5,7 @@ source 'https://github.com/xxdzyyh/XFRepo.git'
 
 inhibit_all_warnings!
 
-target 'XFPush' do 
-	
-	pod 'XFPlugin'
-
+target 'XFPush' do 	
+  pod 'XFPlugin','0.0.2'
+  pod 'QQ_XGPush'
 end

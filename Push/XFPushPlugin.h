@@ -25,6 +25,19 @@
 
 @property (weak, nonatomic) id<XFPushPluginDelegate> delegate;
 
-+ (XFPushPlugin*)pushPluginWithAppkey:(NSString *)appkey;
+@property (nonatomic, assign) BOOL enableDebug;
+@property (nonatomic, assign) BOOL shouldShowOpenAlert;
+
++ (XFPushPlugin*)pushPluginWithAppID:(NSString *)appID appKey:(NSString *)appKey;
+
+- (instancetype)initWithAppID:(NSString *)appID appKey:(NSString *)appKey;
+
+/**
+ @brief 查询设备通知权限是否被用户允许
+ 
+ @param handler 查询结果的返回方法
+ @note iOS 10 or later 回调是异步地执行
+ */
+- (void)deviceNotificationIsAllowed:(nonnull void (^)(BOOL isAllowed))handler;
 
 @end

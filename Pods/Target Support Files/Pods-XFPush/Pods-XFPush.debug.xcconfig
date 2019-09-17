@@ -1,5 +1,9 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/XFPlugin"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/XFPlugin"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"XFPlugin"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FLEX" "${PODS_ROOT}/Headers/Public/QQ_XGPush" "${PODS_ROOT}/Headers/Public/XFPlugin"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FLEX" "${PODS_CONFIGURATION_BUILD_DIR}/XFPlugin" "${PODS_ROOT}/QQ_XGPush/XGPush"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/FLEX" -isystem "${PODS_ROOT}/Headers/Public/QQ_XGPush" -isystem "${PODS_ROOT}/Headers/Public/XFPlugin"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"FLEX" -l"XFPlugin" -l"XG-SDK" -l"sqlite3" -l"z" -framework "CFNetwork" -framework "CoreGraphics" -framework "CoreTelephony" -framework "Foundation" -framework "SystemConfiguration" -framework "UserNotifications"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
