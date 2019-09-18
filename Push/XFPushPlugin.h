@@ -13,6 +13,18 @@
 
 @optional
 
+/**
+ 收到推送处理
+ {
+    aps =     {
+        alert = "2019-09-18 09:48:10 \n\U8fd9\U662f\U6765\U81eaAPNs\U7684\U901a\U77e5";
+        badge = 1;
+        "mutable-content" = 1;
+        sound = "chime.aiff";
+    };
+    "xg_media_resources" = "https://www.baidu.com";
+ }
+ */
 - (void)didRecieveNotifiationWithInfo:(NSDictionary *)info;
 
 @end
@@ -23,10 +35,12 @@
  */
 @interface XFPushPlugin : XFPlugin <UNUserNotificationCenterDelegate>
 
-@property (weak, nonatomic) id<XFPushPluginDelegate> delegate;
+@property (weak, nonatomic) id<XFPushPluginDelegate> _Nullable delegate;
 
+/**
+ 是否输出调试信息
+ */
 @property (nonatomic, assign) BOOL enableDebug;
-@property (nonatomic, assign) BOOL shouldShowOpenAlert;
 
 + (XFPushPlugin*)pushPluginWithAppID:(NSString *)appID appKey:(NSString *)appKey;
 

@@ -26,32 +26,26 @@
 #pragma mark - UIApplicaionDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    if (self.shouldShowOpenAlert) {
-        [[XGPush defaultManager] deviceNotificationIsAllowed:^(BOOL isAllowed) {
-            if (isAllowed == NO) {
-                NSLog(@"设备不允许推送");
-            } else {
-                NSLog(@"设备允许推送");
-            }
-        }];
-    }
-    
     [[XGPush defaultManager] startXGWithAppID:(int32_t)self.appKey.longLongValue appKey:self.appSecret delegate:self];
-    
     return YES;
 }
 
 /**
- 收到推送的回调
+ 收到推送的回调 [iOS7 - iOS 10)
  @param application  UIApplication 实例
  @param userInfo 推送时指定的参数
  @param completionHandler 完成回调
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [[XGPush defaultManager] reportXGNotificationInfo:userInfo];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didRecieveNotifiationWithInfo:)]) {
+        [self.delegate didRecieveNotifiationWithInfo:userInfo];
+    }
+
     completionHandler(UIBackgroundFetchResultNewData);
 }
+
 // iOS 10 新增回调 API
 // App 用户点击通知
 // App 用户选择通知中的行为
@@ -62,6 +56,14 @@
       didReceiveNotificationResponse:(UNNotificationResponse *)response 
                withCompletionHandler:(void (^)(void))completionHandler {
     [[XGPush defaultManager] reportXGNotificationResponse:response];
+    
+    NSDictionary *userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didRecieveNotifiationWithInfo:)]) {
+            [self.delegate didRecieveNotifiationWithInfo:userInfo];
+        }
+    }
+        
     completionHandler();
 }
 
@@ -70,6 +72,15 @@
              willPresentNotification:(UNNotification *)notification 
                withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
     [[XGPush defaultManager] reportXGNotificationInfo:notification.request.content.userInfo];
+
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didRecieveNotifiationWithInfo:)]) {
+            [self.delegate didRecieveNotifiationWithInfo:userInfo];
+        }
+    }
+    
     completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
 }
 #endif
@@ -108,18 +119,11 @@
 #pragma mark - Public
 
 - (void)setEnableDebug:(BOOL)enableDebug {
-    self.enableDebug = enableDebug;
+    _enableDebug = enableDebug;
     
     [[XGPush defaultManager] setEnableDebug:enableDebug];
 }
 
-
-/**
- @brief 查询设备通知权限是否被用户允许
- 
- @param handler 查询结果的返回方法
- @note iOS 10 or later 回调是异步地执行
- */
 - (void)deviceNotificationIsAllowed:(nonnull void (^)(BOOL isAllowed))handler {
     [[XGPush defaultManager] deviceNotificationIsAllowed:handler];
 }
