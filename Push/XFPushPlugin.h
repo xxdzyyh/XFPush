@@ -7,25 +7,24 @@
 //
 
 #import <XFPlugin.h>
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >=     __IPHONE_10_0
+
 #import <UserNotifications/UserNotifications.h>
+
+#endif
+
+NS_ASSUME_NONNULL_BEGIN
 
 @protocol XFPushPluginDelegate <NSObject>
 
 @optional
 
-/**
- 收到推送处理
- {
-    aps =     {
-        alert = "2019-09-18 09:48:10 \n\U8fd9\U662f\U6765\U81eaAPNs\U7684\U901a\U77e5";
-        badge = 1;
-        "mutable-content" = 1;
-        sound = "chime.aiff";
-    };
-    "xg_media_resources" = "https://www.baidu.com";
- }
- */
 - (void)didRecieveNotifiationWithInfo:(NSDictionary *)info;
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >=     __IPHONE_10_0
+- (void)willPresentNotifiationWithInfo:(NSDictionary *)info withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler;
+#endif
 
 @end
 
@@ -35,7 +34,7 @@
  */
 @interface XFPushPlugin : XFPlugin <UNUserNotificationCenterDelegate>
 
-@property (weak, nonatomic) id<XFPushPluginDelegate> _Nullable delegate;
+@property (weak, nonatomic) id<XFPushPluginDelegate> delegate;
 
 /**
  是否输出调试信息
@@ -52,6 +51,22 @@
  @param handler 查询结果的返回方法
  @note iOS 10 or later 回调是异步地执行
  */
-- (void)deviceNotificationIsAllowed:(nonnull void (^)(BOOL isAllowed))handler;
++ (void)deviceNotificationIsAllowed:(nonnull void (^)(BOOL isAllowed))handler;
+
+/**
+ 绑定账号
+ 
+ @param account 要绑定的账号
+ */
++ (void)bindAccount:(NSString *)account;
+
+/**
+ 解绑账号
+
+ @param account 要解绑的账号
+ */
++ (void)unbindAccount:(NSString *)account;
 
 @end
+
+NS_ASSUME_NONNULL_END

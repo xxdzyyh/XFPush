@@ -17,7 +17,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        XFPushPlugin *plugin = [XFPushPlugin pushPluginWithAppID:@"2200342513" appKey:@"I351VD31NEIH"];
+        XFPushPlugin *plugin = [XFPushPlugin pushPluginWithAppID:@"2200343448" appKey:@"I1E8M5F91QDH"];
         plugin.enableDebug = YES;
         plugin.delegate = self;
         [self.pluginManager addPlugin:plugin withName:plugin.name];

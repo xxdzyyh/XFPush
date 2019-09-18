@@ -9,7 +9,7 @@
 #import "XFPushPlugin.h"
 #import <QQ_XGPush/XGPush.h>
 
-@interface XFPushPlugin () <XGPushDelegate>
+@interface XFPushPlugin () <XGPushDelegate,XGPushTokenManagerDelegate>
 
 @end
 
@@ -27,6 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[XGPush defaultManager] startXGWithAppID:(int32_t)self.appKey.longLongValue appKey:self.appSecret delegate:self];
+    [XGPushTokenManager defaultTokenManager].delegate = self;
     return YES;
 }
 
@@ -72,16 +73,14 @@
              willPresentNotification:(UNNotification *)notification 
                withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
     [[XGPush defaultManager] reportXGNotificationInfo:notification.request.content.userInfo];
-
+    
     NSDictionary * userInfo = notification.request.content.userInfo;
     
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didRecieveNotifiationWithInfo:)]) {
-            [self.delegate didRecieveNotifiationWithInfo:userInfo];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(willPresentNotifiationWithInfo:withCompletionHandler:)]) {
+            [self.delegate willPresentNotifiationWithInfo:userInfo withCompletionHandler:completionHandler];
         }
     }
-    
-    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
 }
 #endif
 
@@ -116,6 +115,44 @@
     }
 }
 
+#pragma mark - XGPushTokenManagerDelegate
+
+/**
+ @brief 监控token对象绑定的情况
+ 
+ @param identifier token对象绑定的标识
+ @param type token对象绑定的类型
+ @param error token对象绑定的结果信息
+ */
+- (void)xgPushDidBindWithIdentifier:(nonnull NSString *)identifier 
+                               type:(XGPushTokenBindType)type 
+                              error:(nullable NSError *)error {
+    if (self.enableDebug) {
+        NSLog(@"xgPushDidBindWithIdentifier identifier: %@",identifier);
+        if (error) {
+            NSLog(@"xgPushDidBindWithIdentifier error : %@",error);
+        }
+    }
+}
+
+/**
+ @brief 监控token对象解绑的情况
+ 
+ @param identifier token对象解绑的标识
+ @param type token对象解绑的类型
+ @param error token对象解绑的结果信息
+ */
+- (void)xgPushDidUnbindWithIdentifier:(nonnull NSString *)identifier 
+                                 type:(XGPushTokenBindType)type 
+                                error:(nullable NSError *)error {
+    if (self.enableDebug) {
+        NSLog(@"xgPushDidUnbindWithIdentifier identifier: %@",identifier);
+        if (error) {
+            NSLog(@"xgPushDidUnbindWithIdentifier error : %@",error);
+        }
+    }
+}
+
 #pragma mark - Public
 
 - (void)setEnableDebug:(BOOL)enableDebug {
@@ -124,8 +161,16 @@
     [[XGPush defaultManager] setEnableDebug:enableDebug];
 }
 
-- (void)deviceNotificationIsAllowed:(nonnull void (^)(BOOL isAllowed))handler {
++ (void)deviceNotificationIsAllowed:(nonnull void (^)(BOOL isAllowed))handler {
     [[XGPush defaultManager] deviceNotificationIsAllowed:handler];
+}
+
++ (void)bindAccount:(NSString *)account {
+    [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:account type:XGPushTokenBindTypeAccount];
+}
+
++ (void)unbindAccount:(NSString *)account {
+    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:account type:XGPushTokenBindTypeAccount];
 }
 
 @end
